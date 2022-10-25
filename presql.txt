@@ -1,7 +1,7 @@
 # need to update VM system and also need to download sql onto vm
-sudo apt-get update 
-sudo apt install mysql-server mysql-client
-sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf 
+    #sudo apt-get update 
+    #sudo apt install mysql-server mysql-client
+    #sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf 
 #Once in mysqld.cnf do Ctr+w (like ctrl + F) and type in "bind" and set binding address to 0.0.0.0
 
 #basic commands for sql 
