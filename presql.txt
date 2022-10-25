@@ -1,0 +1,20 @@
+# need to update VM system and also need to download sql onto vm
+sudo apt-get update 
+sudo apt install mysql-server mysql-client
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf 
+#Once in mysqld.cnf do Ctr+w (like ctrl + F) and type in "bind" and set binding address to 0.0.0.0
+
+#basic commands for sql 
+    #sudo mysql (enter mysql)
+    #show databses;
+    #show tables;
+    #\q (to quit)
+    #CREATE USER ‘dba'@'%' IDENTIFIED BY ‘ahi2020’;
+        # creates a user for us to login into 
+    #select user from mysql.user;
+        # special table using the root
+
+#login details for gcp mysql 
+# user - reshad
+# host - 34.69.49.165
+# password - ahi2020 
