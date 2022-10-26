@@ -7,9 +7,6 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from dotenv import load_dotenv
 import os
-from faker import Faker # https://faker.readthedocs.io/en/master/
-import uuid
-import random
 
 #.env file login 
 load_dotenv()
@@ -81,10 +78,52 @@ create table if not exists production_patient_conditions (
     FOREIGN KEY (icd10_code) REFERENCES production_conditions(icd10_code) ON DELETE CASCADE
 ); 
 """
-table_prod_treatment =
+table_prod_treatment = """
+create table if not exists production_treatment (
+    id int auto_increment,
+    treat_cpt varchar(255) default null unique,
+    treat_human_name varchar(255) default null,
+    PRIMARY KEY (id)
+); 
+"""
 
-table_prod_patient_treatment =
+table_prod_patient_treatment = """
+create table if not exists production_patient_treatment (
+    id int auto_increment,
+    mrn varchar(255) default null,
+    treat_cpt varchar(255) default null,
+    PRIMARY KEY (id),
+    FOREIGN KEY (mrn) REFERENCES production_patients(mrn) ON DELETE CASCADE,
+    FOREIGN KEY (treat_cpt) REFERENCES production_treatment(treat_cpt) ON DELETE CASCADE
+); 
+"""
 
-table_prod_social = 
+table_prod_social = """
+create table if not exists production_social (
+    id int auto_increment,
+    social_lonic varchar(255) default null unique,
+    social_human_name varchar(255) default null,
+    PRIMARY KEY (id)
+); 
+""" 
 
-table_prod_social_patient = 
+table_prod_social_patient = """
+create table if not exists production_patient_social (
+    id int auto_increment,
+    mrn varchar(255) default null,
+    social_lonic varchar(255) default null,
+    PRIMARY KEY (id),
+    FOREIGN KEY (mrn) REFERENCES production_patients(mrn) ON DELETE CASCADE,
+    FOREIGN KEY (social_lonic) REFERENCES production_social(social_lonic) ON DELETE CASCADE
+); 
+"""
+
+db_gcp.execute(table_prod_patients)
+db_gcp.execute(table_prod_medications)
+db_gcp.execute(table_prod_patients_medications)
+db_gcp.execute(table_prod_conditions)
+db_gcp.execute(table_prod_patient_conditions)
+db_gcp.execute(table_prod_treatment)
+db_gcp.execute(table_prod_patient_treatment)
+db_gcp.execute(table_prod_social)
+db_gcp.execute(table_prod_social_patient)

@@ -13,8 +13,3 @@
         # creates a user for us to login into 
     #select user from mysql.user;
         # special table using the root
-
-#login details for gcp mysql 
-# user - reshad
-# host - 34.69.49.165
-# password - ahi2020 
